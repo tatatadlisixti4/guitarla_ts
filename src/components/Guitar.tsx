@@ -1,6 +1,14 @@
+type Guitar = {
+    id : number
+    name: string
+    image: string
+    description: string
+    price: number
+}
+
 // function Guitar(props), es similar al e que se pone en js para acceder al evento.
-function Guitar({guitar, addToCart}){
-    const {id, name, image, description, price} = guitar;
+function Guitar({guitar, addToCart} : {guitar : Guitar, addToCart: (item: Guitar) => void; }){
+    const {name, image, description, price} = guitar;
 
     return (
         <div className="col-md-6 col-lg-4 my-4 row align-items-center">
@@ -17,7 +25,8 @@ function Guitar({guitar, addToCart}){
                     onClick={() => {
                         addToCart(guitar)
                     }}
-                >Agregar al Carrito
+                >
+                    Agregar al Carrito
                 </button>
             </div>
         </div>

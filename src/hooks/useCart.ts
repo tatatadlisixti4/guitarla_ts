@@ -11,12 +11,8 @@ const useCart = () => {
     }
 
     // Hooks
-    const [data, setData] = useState([]);
+    const [data] = useState(db);
     const [cart, setCart] = useState(initialCart);
-
-    useEffect(() => {
-        setData(db)
-    }, [])
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));

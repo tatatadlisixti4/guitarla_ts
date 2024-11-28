@@ -1,6 +1,5 @@
 import Header from "./components/Header.jsx";
 import Guitar from "./components/Guitar.jsx";
-import {useState} from "react";
 import {useCart} from "./hooks/useCart";
 
 function App() {
