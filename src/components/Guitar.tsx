@@ -6,8 +6,12 @@ type Guitar = {
     price: number
 }
 
+type GuitarProps = {
+    guitar : Guitar,
+    addToCart: (item: Guitar) => void
+}
 // function Guitar(props), es similar al e que se pone en js para acceder al evento.
-function Guitar({guitar, addToCart} : {guitar : Guitar, addToCart: (item: Guitar) => void; }){
+function Guitar({guitar, addToCart} : GuitarProps){
     const {name, image, description, price} = guitar;
 
     return (
