@@ -1,10 +1,13 @@
+import { Dispatch } from "react";
 import type {Guitar} from "../types"
+import type {CartActions} from "../reducers/cart-reducer.js"
+
 type GuitarProps = {
     guitar : Guitar,
-    addToCart: (item: Guitar) => void
+    dispatch: Dispatch<CartActions> 
 }
 // function Guitar(props), es similar al e que se pone en js para acceder al evento.
-function Guitar({guitar, addToCart} : GuitarProps){
+function Guitar({guitar, dispatch} : GuitarProps){
     const {name, image, description, price} = guitar;
 
     return (
@@ -19,12 +22,8 @@ function Guitar({guitar, addToCart} : GuitarProps){
                 <button
                     type="button"
                     className="btn btn-dark w-100"
-                    onClick={() => {
-                        addToCart(guitar)
-                    }}
-                >
-                    Agregar al Carrito
-                </button>
+                    onClick={() =>dispatch({type: 'add-to-cart', payload: {item: guitar}})}
+                >Agregar al Carrito</button>
             </div>
         </div>
     )

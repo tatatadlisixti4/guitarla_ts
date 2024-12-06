@@ -11,7 +11,6 @@ const useCart = () => {
     }
 
     // Hooks
-    
     const [cart, setCart] = useState(initialCart);
 
     useEffect(() => {
