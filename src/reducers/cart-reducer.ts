@@ -1,6 +1,10 @@
 import {db} from '../data/db.js'
 import {Guitar, CartItem} from "../types" 
 
+// Constantes
+const MAX_ITEMS = 5;
+const MIN_ITEMS = 1;
+
 // Actions
 export type CartActions = 
     {type: 'add-to-cart', payload: {item: Guitar}} |
@@ -27,10 +31,20 @@ export const cartReducer = (
     action: CartActions
     ) => {
     if(action.type === 'add-to-cart') {
-        console.log('hola')
-        
+        const itemExist = state.cart.findIndex( guitar => guitar.id === action.payload.item.id)
+        let updatedCart: CartItem[] = []
+
+        if(itemExist >= 0)  {
+            if(state.cart[itemExist].quantity >=  MAX_ITEMS) return
+            updatedCart = [...state.cart]
+            updatedCart[itemExist].quantity ++
+        } else {
+            const newItem : CartItem = {...action.payload.item, quantity: 1}
+            updatedCart = [...state.cart, newItem]
+        }
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
     if(action.type === "remove-from-cart") {
