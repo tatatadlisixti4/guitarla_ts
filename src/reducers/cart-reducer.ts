@@ -2,15 +2,15 @@ import {db} from '../data/db.js'
 import {Guitar, CartItem} from "../types" 
 
 // Constantes
-const MAX_ITEMS = 5;
-const MIN_ITEMS = 1;
+const MAX_ITEMS = 5
+//const MIN_ITEMS = 1
 
 // Actions
 export type CartActions = 
     {type: 'add-to-cart', payload: {item: Guitar}} |
-    {type: 'remove-from-cart', paylod: {id: Guitar['id']}} |
-    {type: 'decrease-quantity', paylod: {id: Guitar['id']}} |
-    {type: 'increase-quantity', paylod: {id: Guitar['id']}} |
+    {type: 'remove-from-cart', payload: {id: Guitar['id']}} |
+    {type: 'decrease-quantity', payload: {id: Guitar['id']}} |
+    {type: 'increase-quantity', payload: {id: Guitar['id']}} |
     {type: 'clear-cart'} 
 
 // Type State
@@ -58,8 +58,10 @@ export const cartReducer = (
         }
     }
     if(action.type === "remove-from-cart") {
+        const updatedCart =  state.cart.filter(item => item.id !== action.payload.id)
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
     if(action.type === "decrease-quantity") {
