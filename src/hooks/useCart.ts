@@ -1,5 +1,4 @@
 import {useState, useEffect, useMemo} from "react"
-import {db} from "../data/db"
 import type {Guitar, CartItem} from "../types"
 
 const useCart = () => {
@@ -12,7 +11,7 @@ const useCart = () => {
     }
 
     // Hooks
-    const [data] = useState(db);
+    
     const [cart, setCart] = useState(initialCart);
 
     useEffect(() => {
@@ -69,7 +68,6 @@ const useCart = () => {
 
     // Return
     return {
-        data,
         cart,
         addToCart,
         removeFromCart,
