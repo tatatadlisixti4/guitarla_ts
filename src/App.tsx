@@ -1,6 +1,8 @@
-import Header from "./components/Header.jsx";
-import Guitar from "./components/Guitar.jsx";
-import {useCart} from "./hooks/useCart";
+import {useReducer} from "react"
+import Header from "./components/Header.jsx"
+import Guitar from "./components/Guitar.jsx"
+import {useCart} from "./hooks/useCart"
+import { cartReducer, initialState } from "./reducers/cart-reducer.js"
 
 function App() {
     const {
@@ -14,6 +16,10 @@ function App() {
         isEmpty,
         cartTotal
     } = useCart();
+
+    const [state, dispatch] = useReducer(cartReducer, initialState)
+    console.log(state)
+    
 
     // Returns
     return (
