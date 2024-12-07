@@ -9,22 +9,11 @@ const useCart = () => {
     }
 
     // Hooks
-    const [cart, setCart] = useState(initialCart);
+    const [cart] = useState(initialCart);
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
-    
-
-    function clearCart() {
-        setCart([])
-    }
-
-    
-    // Return
-    return {
-        clearCart
-    }
 }
 
 export {useCart};
