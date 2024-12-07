@@ -3,7 +3,7 @@ import {Guitar, CartItem} from "../types"
 
 // Constantes
 const MAX_ITEMS = 5
-//const MIN_ITEMS = 1
+const MIN_ITEMS = 1
 
 // Actions
 export type CartActions = 
@@ -57,6 +57,7 @@ export const cartReducer = (
             cart: updatedCart
         }
     }
+    
     if(action.type === "remove-from-cart") {
         const updatedCart =  state.cart.filter(item => item.id !== action.payload.id)
         return {
@@ -64,11 +65,23 @@ export const cartReducer = (
             cart: updatedCart
         }
     }
+
     if(action.type === "decrease-quantity") {
+        const updatedCart = state.cart.map(item => {
+            if(item.id === action.payload.id && item.quantity > MIN_ITEMS) {
+                return {
+                    ...item, 
+                    quantity: item.quantity - 1
+                }
+            }
+            return item
+        })
         return {
-            ...state
+            ...state,
+            cart: updatedCart
         }
     }
+
     if(action.type === "increase-quantity") {
         const updatedCart = state.cart.map(item => {
             if(item.id === action.payload.id && item.quantity < MAX_ITEMS) {
@@ -84,6 +97,7 @@ export const cartReducer = (
             cart: updatedCart
         }
     }
+
     if(action.type === "clear-cart") {
         return {
             ...state
