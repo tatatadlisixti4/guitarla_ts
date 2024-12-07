@@ -6,7 +6,6 @@ import {cartReducer, initialState} from "./reducers/cart-reducer.js"
 
 function App() {
     const {
-        increaseQuantity,
         decreaseQuantity,
         clearCart
     } = useCart()
@@ -18,7 +17,6 @@ function App() {
         <Header
             cart={state.cart}
             dispatch={dispatch}
-            increaseQuantity={increaseQuantity}
             decreaseQuantity={decreaseQuantity}
             clearCart={clearCart}
         />
@@ -42,7 +40,6 @@ function App() {
                 <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
             </div>
         </footer>
-
     </>
     )
 }
